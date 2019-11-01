@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+
+
+{% block app_content %}
+  <div class="row">
+    <div class="col-md-12">
+      {% if header != '' %}
+        <h1>{{ header }}</h1>
+      {% else %}
+        <h1>{{ title }}</h1>
+      {% endif %}
+    </div>
+  </div> <!-- ends row for title -->
+
+  <div class="row">
+    <div class="col-md-12">
+      <img src="http://placehold.it/800x150" alt="Placeholder" class="banner">
+    </div>
+  </div> <!-- ends row for banner -->
+
+  <!-- loop through products and add each card -->
+  {% for product in products %}
+    {% if loop.index == 1 or loop.index % 3 == 1 %}
+      <div class="row">
+    {% endif %}
+      <div class="col-md-4">
+        <div class="card">
+          <img src="http://placehold.it/250x250" alt="Placeholder" class="card-img">
+          <div class="card-title">{{ product.title }}</div>
+          <div class="card-subtitle">${{ product.price }}</div>
+          <div class="card-text">
+            <p>{{ product.desc }}</p>
+          </div>
+          <button onClick="alert({{ product.id }})" class="btn btn-primary">Add to Cart</button>
+        </div> <!-- ends card -->
+      </div> <!-- ends col 4 for card -->
+    {% if loop.index % 3 == 0 %}
+      </div> <!-- ends row for cards -->
+    {% endif %}
+  {% endfor %}
+
+
+
+
+
+
+
+{% endblock %}
